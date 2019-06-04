@@ -1,0 +1,9 @@
+curl -d '{"isbn":"123", "title":"jaws", "author" : "eric", "price":"20.5", "inStock" : "true"}' -H "Content-Type: application/json" -X POST http://localhost:8080/library/book
+
+curl -d '{"isbn":"123", "title":"jaws2", "author" : "eric", "price":"21.5", "inStock" : "false"}' -H "Content-Type: application/json" -X POST http://localhost:8080/library/edit/123
+
+curl -d '{"bookId":"1", "quantity" : "50"}' -H "Content-Type: application/json" -X POST http://localhost:8080/library/books
+
+curl 'localhost:8080/library/book'
+
+curl 'localhost:8080/library/books'
