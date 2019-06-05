@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@CrossOrigin
 @RequestMapping(path = "/library")
 
 public class BookController {
@@ -39,6 +40,7 @@ public class BookController {
     }
 
     @GetMapping(path = "/book/{isbn}")
+    @CrossOrigin
     public @ResponseBody Book getBookByISBN(@PathVariable("isbn") String bookISBN){
         return bookRepository.findByisbn(bookISBN);
     }
@@ -49,6 +51,22 @@ public class BookController {
         Book newBook = new Book();
         return setBook(book, newBook);
     }
+
+    @PostMapping(path = "/remove")
+    @CrossOrigin
+    public @ResponseBody Book removeBook(@RequestBody Book book){
+        bookRepository.delete(book);
+        return null;
+    }
+
+    @GetMapping(path = "/book/author/{name}")
+    @CrossOrigin
+    public @ResponseBody Iterable<Book> getBooksByAuthor(@PathVariable("name") String name){
+        return bookRepository.findByAuthor(name);
+
+    }
+
+
     @PostMapping(path = "/edit/{isbn}")
     @CrossOrigin
     public @ResponseBody Book editBook(@PathVariable("isbn") String bookISBN, @RequestBody Book book){
@@ -64,6 +82,5 @@ public class BookController {
         newBook.setPrice(book.getPrice());
         return bookRepository.save(newBook);
     }
-
 
 }

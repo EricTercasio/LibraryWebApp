@@ -6,4 +6,6 @@ curl -d '{"bookId":"1", "quantity" : "50"}' -H "Content-Type: application/json" 
 
 curl 'localhost:8080/library/book'
 
+curl 'localhost:8080/library/book/author/'Eric%20Tercasio''
+
 curl 'localhost:8080/library/books'
